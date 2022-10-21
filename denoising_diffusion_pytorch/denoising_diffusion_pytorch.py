@@ -568,7 +568,7 @@ class Trainer(object):
         return sample
 
     def load(self, milestone):
-        model_data = torch.load(str(self.RESULTS_FOLDER / f'model-{milestone}.pt'))
+        model_data = torch.load(str(self.RESULTS_FOLDER / f'model-{milestone}.pt'),map_location=torch.device("cpu"))
 
         self.step =  model_data['step']
         self.model.load_state_dict( model_data['model'])
