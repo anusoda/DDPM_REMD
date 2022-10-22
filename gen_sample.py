@@ -6,7 +6,7 @@ from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer, Datase
 import numpy as np
 from torch.utils import data
 
-device = torch.device("cuda")
+#device = torch.device("cuda")
 model = Unet(
     dim = 32,
     dim_mults = (1, 2, 2, 4),
@@ -14,7 +14,7 @@ model = Unet(
 )
 
 model = nn.DataParallel(model)
-model.to(device)
+#model.to(device)
 
 op_num = 18
 konw_op_num = 0
@@ -24,7 +24,7 @@ diffusion = GaussianDiffusion(
     timesteps = 1000,   # number of diffusion steps
     unmask_number=konw_op_num+1,
     loss_type = 'l2'    # L1 or L2
-).to(device)#.cuda()
+)#.to(device)#.cuda()
 
 trainer = Trainer(
     diffusion,
